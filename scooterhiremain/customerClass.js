@@ -1,3 +1,5 @@
+const {Scooter} = require('./scooterClass');
+
 class Customer{
     static customers =[];
     constructor(name, age, town) {
@@ -6,6 +8,7 @@ class Customer{
         this.town = town;
         this.member = false;
         this.dist_travelled = 0;
+        this.usingscooter = [];
         
 
         if(!this.name) {
@@ -36,7 +39,7 @@ class Customer{
     }
     setMemberStatus(status) {
         if (typeof status === 'boolean') {
-            return this.member = status;
+            this.member = status;
         }
         else{
             throw new Error('Member must be boolean');
@@ -54,17 +57,44 @@ class Customer{
         if (this.checkOver18() == true) {
             Customer.customers.push(this);
             this.setMemberStatus(true);
-            console.log('Welcome to our scooter hire app');
+            console.log('Welcome to our scooter hire app, ' + this.name);
         }
         else {
             console.log('Unable to register');
         }
     }
+    addScooter(scooter) {
+        if(this.member === true){
+            if(scooter instanceof Scooter) {
+                if(this.usingscooter.length === 0) {
+                    this.usingscooter.push(scooter);
+                }
+                else{
+                    console.log('You can only hire one scooter at a time');
+                }
+            }
+            else{
+                console.log('You can only hire scooters');
+            }
+        }
+        else{
+            console.log('Only members can hire a scooter');
+        }
+        
+        
+        
+    }
+    reportBroken() {
+        if (this.usingscooter.length > 0) {
+            this.usingscooter[0].setBrokenStatus(true);
+            this.usingscooter.splice(0, 1);
+        }
+        else{
+            console.log('No scooter in use to report');
+        }
+
+    }
 }
-
-const john = new Customer('John', 18, 'town1');
-john.register();
-
 
 
 

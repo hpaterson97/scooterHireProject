@@ -1,0 +1,23 @@
+{
+  "name": "scooterhireproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:report": "jest --coverage=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hpaterson97/scooterHireProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hpaterson97/scooterHireProject/issues"
+  },
+  "homepage": "https://github.com/hpaterson97/scooterHireProject#readme",
+  "dependencies": {
+    "jest": "^27.3.0"
+  }
+}
