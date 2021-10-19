@@ -17,4 +17,8 @@ station1.rentOutScooter(scooter1, customer1);
 console.log(station1);
 console.log(customer1);
 
+customer1.reportBroken(station1);
+
+console.log(station1);
+console.log(customer1);
 

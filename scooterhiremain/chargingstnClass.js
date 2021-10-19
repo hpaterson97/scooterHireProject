@@ -5,7 +5,8 @@ class ChargingStn{
     static stations = []
     constructor(town) {
         this.town = town;
-        this.avscooters=[];
+        this.avscooters = [];
+        
         ChargingStn.stations.push(this);
 
         if(!this.town) {
@@ -21,6 +22,12 @@ class ChargingStn{
         const sctindex = this.avscooters.indexOf(scooter);
         this.avscooters.splice(sctindex, 1);
 
+    }
+    fixScooter(scooter) {
+        // add in function so after a certain amount of time, the scooter is added back to array
+        console.log('scooter has been fixed');
+        scooter.setBrokenStatus(false);
+        this.avscooters.push(scooter);
     }
 
 

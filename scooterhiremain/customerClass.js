@@ -46,15 +46,9 @@ class Customer{
         }
         
     }
-    checkOver18() {
-        if (this.age >= 18) {
-            return true;
-
-        }
-    }
 
     register() {
-        if (this.checkOver18() == true) {
+        if (this.age >= 18) {
             Customer.customers.push(this);
             this.setMemberStatus(true);
             console.log('Welcome to our scooter hire app, ' + this.name);
@@ -84,9 +78,11 @@ class Customer{
         
         
     }
-    reportBroken() {
-        if (this.usingscooter.length > 0) {
+    reportBroken(station) {
+        if (this.usingscooter.length > 0) {          
+            console.log('scooter has been handed over to maintenance');
             this.usingscooter[0].setBrokenStatus(true);
+            station.fixScooter(this.usingscooter[0])
             this.usingscooter.splice(0, 1);
         }
         else{
