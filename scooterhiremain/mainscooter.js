@@ -15,13 +15,13 @@ console.log(customer1);
 customer1.register();
 
 station1.avscooters.push(scooter1, scooter2, scooter3);
-console.log(station1);
+//console.log(station1);
 station1.rentOutScooter(customer1);
 
-console.log(station1);
-console.log(customer1);
+//console.log(station1);
+//console.log(customer1);
 
-customer1.reportBroken(station1);
+customer1.returnScooter(station1);
 
-console.log(station1);
-console.log(customer1);
+//console.log(station1);
+//console.log(customer1);

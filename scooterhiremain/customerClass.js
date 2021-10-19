@@ -9,6 +9,7 @@ class Customer{
         this.member = false;
         this.dist_travelled = 0;
         this.usingscooter = [];
+        this.debt = 0;
         
 
         if(!this.name) {
@@ -74,17 +75,20 @@ class Customer{
         }
         else{
             console.log('Only members can hire a scooter');
-        }
-        
-        
-        
+        }  
+    }
+    setTravelTime() {
+        const dist = Math.floor(Math.random() * 36);
+        this.dist_travelled =+ dist;
+        console.log(this.name + ' has travelled ' + this.dist_travelled + ' km in total');
     }
     reportBroken(station) {
-        if (this.usingscooter.length > 0) {          
+        if (this.usingscooter.length > 0) {
+            this.setTravelTime();          
             console.log('scooter: ' + this.usingscooter[0].id+  ' has been handed over to maintenance at charging station: ' + station.town);
             this.usingscooter[0].setBrokenStatus(true);
             this.usingscooter[0].setRentedStatus(false);
-            station.fixScooter(this.usingscooter[0]);
+            station.fixScooter(this.usingscooter[0], this);
             this.usingscooter.splice(0, 1);
         }
         else{
@@ -94,9 +98,10 @@ class Customer{
     }
     returnScooter(station) {
         if (this.usingscooter.length > 0) {
+            this.setTravelTime();
             console.log('scooter: ' + this.usingscooter[0].id + ' is in process of being returned to charging station: ' + station.town + ' and waiting to be charged');
             this.usingscooter[0].setRentedStatus(false);
-            station.chargeScooter(this.usingscooter[0])
+            station.chargeScooter(this.usingscooter[0], this)
             this.usingscooter.splice(0, 1);
         }
         else {
