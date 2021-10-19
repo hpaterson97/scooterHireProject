@@ -62,6 +62,7 @@ class Customer{
             if(scooter instanceof Scooter) {
                 if(this.usingscooter.length === 0) {
                     this.usingscooter.push(scooter);
+                    console.log(this.name + ' is currently renting out scooter: ' + this.usingscooter[0].id);
                 }
                 else{
                     console.log('You can only hire one scooter at a time');
@@ -80,15 +81,27 @@ class Customer{
     }
     reportBroken(station) {
         if (this.usingscooter.length > 0) {          
-            console.log('scooter has been handed over to maintenance');
+            console.log('scooter: ' + this.usingscooter[0].id+  ' has been handed over to maintenance at charging station: ' + station.town);
             this.usingscooter[0].setBrokenStatus(true);
-            station.fixScooter(this.usingscooter[0])
+            this.usingscooter[0].setRentedStatus(false);
+            station.fixScooter(this.usingscooter[0]);
             this.usingscooter.splice(0, 1);
         }
         else{
             console.log('No scooter in use to report');
         }
 
+    }
+    returnScooter(station) {
+        if (this.usingscooter.length > 0) {
+            console.log('scooter: ' + this.usingscooter[0].id + ' is in process of being returned to charging station: ' + station.town + ' and waiting to be charged');
+            this.usingscooter[0].setRentedStatus(false);
+            station.chargeScooter(this.usingscooter[0])
+            this.usingscooter.splice(0, 1);
+        }
+        else {
+            console.log('No scooter to return');
+        }
     }
 }
 

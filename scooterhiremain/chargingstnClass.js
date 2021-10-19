@@ -16,18 +16,35 @@ class ChargingStn{
             throw new Error('Town name must be a string');
         }
     }
-    rentOutScooter(scooter, customer) {
-        scooter.setRentedStatus(true);
-        customer.addScooter(scooter);
-        const sctindex = this.avscooters.indexOf(scooter);
-        this.avscooters.splice(sctindex, 1);
+    rentOutScooter(customer) {
+        if(this.town === customer.town) {
+            const scooter = this.avscooters[Math.floor(Math.random() * (this.avscooters.length-1))];
+            scooter.setRentedStatus(true);
+            customer.addScooter(scooter);
+            const sctindex = this.avscooters.indexOf(scooter);
+            this.avscooters.splice(sctindex, 1);
+        }
+        else{
+            console.log('Customer is not in ' + this.town + "'s range. Please try a different station");
+        }
+        
 
     }
     fixScooter(scooter) {
         // add in function so after a certain amount of time, the scooter is added back to array
-        console.log('scooter has been fixed');
-        scooter.setBrokenStatus(false);
-        this.avscooters.push(scooter);
+        setTimeout(()=>{
+            console.log('scooter: ' + scooter.id + ' has been fixed at station: ' + this.town);
+            scooter.setBrokenStatus(false);   
+        }, 1000) //waits 1 second before executing code
+        this.chargeScooter(scooter);
+        
+    }
+    chargeScooter(scooter) {
+        setTimeout(()=>{
+            scooter.setChargedStatus(true);
+            this.avscooters.push(scooter);
+            console.log('scooter: ' + scooter.id + ' has been charged at station: ' + this.town);
+        }, 1000); //waits 1 second before executing code
     }
 
 
