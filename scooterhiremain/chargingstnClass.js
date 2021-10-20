@@ -38,7 +38,7 @@ class ChargingStn{
     reportBrokenScooter(customer) {
         const sct = customer.scooter[0]
         customer.scooter.splice(0,1);
-        console.log(sct.id + ' has been reported as broken by ' + customer.name);
+        console.log(sct.id + ' has been reported as broken by ' + customer.name + '. scooter: ' + sct.id + ' is waiting to be fixed.');
         setTimeout(()=>{
             sct.broken = false; 
             console.log('scooter: ' + sct.id + ' has been fixed at station: ' + this.town);  
@@ -48,6 +48,7 @@ class ChargingStn{
         
     }
     chargeScooter(scooter) {
+        console.log('Scooter: ' + scooter.id + ' is being charged');
         setTimeout(()=>{
             scooter.charged = true;
             this.avscooters.push(scooter);

@@ -50,9 +50,15 @@ class Customer{
         }
     }
     setTravelTime() {
-        const dist = Math.floor(Math.random() * 33); //creates a random integer between 0 and 32 to simulate distance travelled
-        this.dist_travelled =+ dist;                 //this function is called whenever the scooter is returned
-        console.log(this.name + ' has returned their scooter and has travelled ' + this.dist_travelled + ' km in total');
+        if(this.member == true) {
+            const dist = Math.floor(Math.random() * 33); //creates a random integer between 0 and 32 to simulate distance travelled
+            this.dist_travelled =+ dist;                 //this function is called whenever the scooter is returned
+            console.log(this.name + ' has returned their scooter and has travelled ' + this.dist_travelled + ' km in total');
+        }
+        else{
+            console.log('No scooter to travel on');
+        }
+        
     }
 
 }
