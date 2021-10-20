@@ -1,9 +1,9 @@
 class Scooter{
     constructor(id) {
         this.id = id;
-        this.rented = false;
-        this.charged = true;
-        this.broken = false;
+        this.rented = false; //always set to false initially
+        this.charged = true; //scooters are fully charged when created
+        this.broken = false; //set to false initially
 
         if(!this.id) {
             throw new Error('Scooter must have ID');
