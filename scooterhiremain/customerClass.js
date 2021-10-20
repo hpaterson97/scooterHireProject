@@ -8,7 +8,7 @@ class Customer{
         this.town = town;
         this.member = false;
         this.dist_travelled = 0;
-        this.usingscooter = [];
+        this.scooter = [];
         this.debt = 0;
         
 
@@ -38,26 +38,36 @@ class Customer{
         }
         
     }
-    setMemberStatus(status) {
-        if (typeof status === 'boolean') {
-            this.member = status;
-        }
-        else{
-            throw new Error('Member must be boolean');
-        }
-        
-    }
 
     register() {
         if (this.age >= 18) {
             Customer.customers.push(this);
-            this.setMemberStatus(true);
+            this.member = true;
             console.log('Welcome to our scooter hire app, ' + this.name);
         }
         else {
             console.log('Unable to register');
         }
     }
+    setTravelTime() {
+        const dist = Math.floor(Math.random() * 36);
+        this.dist_travelled =+ dist;
+        console.log(this.name + ' has travelled ' + this.dist_travelled + ' km in total');
+    }
+
+}
+
+module.exports = {Customer};
+
+
+
+
+
+
+
+
+
+/*
     addScooter(scooter) {
         if(this.member === true){
             if(scooter instanceof Scooter) {
@@ -108,9 +118,9 @@ class Customer{
             console.log('No scooter to return');
         }
     }
-}
+
+
+*/
 
 
 
-
-module.exports = {Customer};

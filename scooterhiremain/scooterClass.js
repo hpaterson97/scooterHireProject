@@ -12,6 +12,23 @@ class Scooter{
             throw new Error('Scooter ID must be a number');
         }
     }
+
+}
+module.exports = {Scooter};
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     setRentedStatus(status) {
         if(typeof status === 'boolean') {
             this.rented = status;
@@ -36,6 +53,7 @@ class Scooter{
             throw new Error('Status must be boolean');
         }
     }
-}
+*/
 
-module.exports = {Scooter};
+
+
