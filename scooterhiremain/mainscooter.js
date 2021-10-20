@@ -17,11 +17,10 @@ customer1.register();
 customer2.register();
 
 
-station1.avscooters.push(scooter1, scooter2);
+station1.avscooters.push(scooter1, scooter2, scooter3);
 station1.rentOutScooter(customer2);
 station1.rentOutScooter(customer1);
 station1.reportBrokenScooter(customer2);
 station1.returnScooter(customer1);
 station1.returnScooter(customer2);
-station1.chargeCustomer(customer1);
-station1.chargeCustomer(customer2);
+

@@ -62,6 +62,7 @@ class ChargingStn{
             customer.scooter[0].rented = false;
             this.chargeScooter(customer.scooter[0], customer);
             customer.scooter.splice(0, 1);
+            this.chargeCustomer(customer);
         }
         else {
             console.log('No scooter to return');

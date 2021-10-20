@@ -33,13 +33,13 @@ describe('Charging Station Unit Test', ()=>{
     test('should expect that chargeCustomer charges the customer 0 pounds if they have not travelled', ()=>{
         expect(station1.chargeCustomer(customer1)).toBe(console.log(customer1.name + ' has been charged ' + customer1.debt + ' pounds'));
     });
-    test('waits 1 second before executing the chargeScooter code', ()=>{
+    test('waits 1 second before charging the scooter', ()=>{
         station1.avscooters.push(scooter1);
         station1.chargeScooter(scooter1);
         expect(setTimeout).toHaveBeenCalledTimes(1);
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
     })
-    test('waits 1 second before executing the reportBrokenScooter code', ()=>{
+    test('waits 1 second before fixing the scooter', ()=>{
         station1.avscooters.push(scooter1);
         station1.rentOutScooter(customer1);
         station1.reportBrokenScooter(customer1);
