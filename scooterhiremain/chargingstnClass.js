@@ -20,7 +20,7 @@ class ChargingStn{
         
         if(this.town !== customer.town){throw new Error('Customer is not in ' + this.town + "'s range. Please try a different station");} 
         
-        if(customer.scooter.length > 1){ throw new Error('Customer can only hire one scooter at a time');}
+        if(customer.scooter.length > 1){throw new Error('Customer can only hire one scooter at a time');}
                 
         const scooter = this.avscooters[Math.floor(Math.random() * (this.avscooters.length-1))]; //picking a random scooter from the array of available scooters and assigning it to a variable
         scooter.rented = true; 
@@ -61,7 +61,7 @@ class ChargingStn{
     }*/
     async chargeScooter(scooter) {
         console.log('Scooter ' + scooter.id + ' is being charged');
-        return new Promise(resolve => {
+        return new Promise(resolve => {    
             setTimeout(()=>{
                 scooter.charged = true; 
                 resolve(console.log('scooter ' + scooter.id + ' has been charged at station: ' + this.town))
@@ -69,13 +69,13 @@ class ChargingStn{
             });}
 
 
-    async returnScooter(customer) {              //function to return scooter back to station
+    async returnScooter(customer) {        //function to return scooter back to station
         if (customer.scooter.length < 1){throw new Error('No scooter to return');} //checks that the customer has a scooter
         customer.setDistance();            //calculates the distance since hiring scooter
         console.log('scooter ' + customer.scooter[0].id + ' has been returned to charging station: ' + this.town + ' and is waiting to be charged');
 
         customer.scooter[0].rented = false; 
-        await this.chargeScooter(customer.scooter[0]);
+        await this.chargeScooter(customer.scooter[0]); //this means now that the scooter has to be charged before the code after it can be executed
         this.avscooters.push(customer.scooter[0]); //adds scooter to station's available scooters array
         console.log('scooter has been added back to ' + this.town);
         customer.scooter.splice(0, 1);     //removes scooter from customer
@@ -88,7 +88,7 @@ class ChargingStn{
 
     chargeCustomer(customer) {             //function to charge customer
         const dist = customer.dist_travelled;
-        customer.debt =+ dist * 2;         //calculates the fee as twice the distance travelled (arbitrarily)
+        customer.debt = dist * 2;         //calculates the fee as twice the distance travelled (arbitrarily)
         return(console.log(customer.name + ' has been charged ' + customer.debt + ' pounds'));
     }
 
