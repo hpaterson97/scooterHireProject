@@ -23,15 +23,13 @@ describe('Customer Attribute Tests', ()=>{
     test('should throw error if town is not a string', ()=>{
         expect(()=>new Customer('John', 1, 3)).toThrowError('Town must be a string');
     });
+    
+
     test('should give welcome message when someone over 18 registers', ()=>{
         expect(customer1.register()).toBe(console.log('Welcome to our scooter hire app, ' + customer1.name));
     });
-    test('should give rejection message when someone under 18 registers', ()=>{
-        expect(customer2.register()).toBe(console.log('Unable to register'));
-    });
-    test('should expect setTravelTime to give console message when trying to travel without scooter', ()=>{
-        expect(customer1.setTravelTime()).toBe(console.log('No scooter to travel on'));
-    });
+
+
 
     
     
