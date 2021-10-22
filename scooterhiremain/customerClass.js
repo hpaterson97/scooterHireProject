@@ -8,7 +8,7 @@ class Customer{
         this.town = town;
         this.member = false; //initially not a member => has to register
         this.dist_travelled = 0;
-        this.scooter = [];
+        this.scooter = []; 
         this.debt = 0;
         
 
@@ -40,23 +40,21 @@ class Customer{
     }
 
     register() {
-        if (this.age >= 18) { //members have to be over 18 to register
+        if (this.age < 18) {throw new Error('Customer must be over 18 to register');} //members have to be over 18 to register
             Customer.customers.push(this);
             this.member = true;
             console.log('Welcome to our scooter hire app, ' + this.name);
-        }
-        else {
-            console.log('Unable to register');
-        }
+        
+        
     }
-    setTravelTime() {
-        if(this.member == true) {
+    setDistance() {
+        if(this.scooter.length > 0) {
             const dist = Math.floor(Math.random() * 33); //creates a random integer between 0 and 32 to simulate distance travelled
-            this.dist_travelled =+ dist;                 //this function is called whenever the scooter is returned
+            this.dist_travelled = dist;                 //this function is called whenever the scooter is returned
             console.log(this.name + ' has returned their scooter and has travelled ' + this.dist_travelled + ' km in total');
         }
         else{
-            console.log('No scooter to travel on');
+            throw new Error('Must have a scooter first');
         }
         
     }
